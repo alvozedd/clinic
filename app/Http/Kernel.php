@@ -6,6 +6,16 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
+<<<<<<< HEAD
+=======
+    /**
+     * The application's global HTTP middleware stack.
+     *
+     * These middleware are run during every request to your application.
+     *
+     * @var array<int, class-string|string>
+     */
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
@@ -16,6 +26,14 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
+<<<<<<< HEAD
+=======
+    /**
+     * The application's route middleware groups.
+     *
+     * @var array<string, array<int, class-string|string>>
+     */
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
     protected $middlewareGroups = [
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
@@ -28,11 +46,25 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+<<<<<<< HEAD
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+=======
+            'throttle:api',
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
+<<<<<<< HEAD
+=======
+    /**
+     * The application's route middleware.
+     *
+     * These middleware may be assigned to groups or used individually.
+     *
+     * @var array<string, class-string|string>
+     */
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
@@ -41,9 +73,17 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+<<<<<<< HEAD
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => \App\Http\Middleware\CheckRole::class, // This is the correct way
     ];
 }
+=======
+        'signed' => \App\Http\Middleware\ValidateSignature::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+    ];
+}
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8

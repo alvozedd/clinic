@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\Appointment;
 use App\Models\MedicalRecord;
 use App\Models\Patient;
@@ -22,11 +23,31 @@ class PatientController extends Controller
         return view('admin.patients.index', [
             'patients' => Patient::with('user')->latest()->paginate(10)
         ]);
+=======
+use App\Models\Patient;
+use Illuminate\Http\Request;
+
+class PatientController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth'); // Ensure authentication
+    }
+
+    public function index()
+    {
+        $patients = Patient::all();
+        return view('patients.index', compact('patients'));
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
     }
 
     public function create()
     {
+<<<<<<< HEAD
         return view('admin.patients.create');
+=======
+        return view('patients.create');
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
     }
 
     public function store(Request $request)
@@ -34,6 +55,7 @@ class PatientController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+<<<<<<< HEAD
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone' => 'nullable|string|max:20',
@@ -65,13 +87,38 @@ class PatientController extends Controller
 
         return redirect()->route('admin.patients.index')
             ->with('success', 'Patient created successfully!');
+=======
+            'date_of_birth' => 'required|date',
+            'gender' => 'required|string|in:Male,Female,Other',
+            'contact_number' => 'required|string|max:15',
+            'email' => 'nullable|email|unique:patients,email',
+            'address' => 'nullable|string',
+            'medical_history' => 'nullable|string',
+        ]);
+
+        Patient::create($request->only([
+            'first_name', 'last_name', 'date_of_birth', 'gender',
+            'contact_number', 'email', 'address', 'medical_history'
+        ]));
+
+        return redirect()->route('patients.index')->with('success', 'Patient created successfully.');
+    }
+
+    public function show(Patient $patient)
+    {
+        return view('patients.show', compact('patient'));
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
     }
 
     public function edit(Patient $patient)
     {
+<<<<<<< HEAD
         return view('admin.patients.edit', [
             'patient' => $patient
         ]);
+=======
+        return view('patients.edit', compact('patient'));
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
     }
 
     public function update(Request $request, Patient $patient)
@@ -79,6 +126,7 @@ class PatientController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+<<<<<<< HEAD
             'email' => 'required|string|email|max:255|unique:users,email,' . $patient->user_id,
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
@@ -105,10 +153,27 @@ class PatientController extends Controller
 
         return redirect()->route('admin.patients.index')
             ->with('success', 'Patient updated successfully!');
+=======
+            'date_of_birth' => 'required|date',
+            'gender' => 'required|string|in:Male,Female,Other',
+            'contact_number' => 'required|string|max:15',
+            'email' => 'nullable|email|unique:patients,email,' . $patient->id,
+            'address' => 'nullable|string',
+            'medical_history' => 'nullable|string',
+        ]);
+
+        $patient->update($request->only([
+            'first_name', 'last_name', 'date_of_birth', 'gender',
+            'contact_number', 'email', 'address', 'medical_history'
+        ]));
+
+        return redirect()->route('patients.index')->with('success', 'Patient updated successfully.');
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
     }
 
     public function destroy(Patient $patient)
     {
+<<<<<<< HEAD
         $patient->user()->delete(); // Delete user first (will cascade or handle patient delete)
         $patient->delete();
 
@@ -138,5 +203,9 @@ class PatientController extends Controller
                 ->take(5)
                 ->get()
         ]);
+=======
+        $patient->delete();
+        return redirect()->route('patients.index')->with('success', 'Patient deleted successfully.');
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
     }
 }

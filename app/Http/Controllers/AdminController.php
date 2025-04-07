@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\User;
 use App\Models\Staff;
 use App\Models\Appointment;
@@ -151,3 +152,19 @@ class AdminController extends Controller
         ];
     }
 }
+=======
+use Illuminate\Http\Request;
+
+class AdminController extends Controller
+{
+    
+    public function index()
+{
+    $totalPatients = \App\Models\Patient::count();
+    $totalAppointments = \App\Models\Appointment::count();
+    $lowStockItems = \App\Models\Inventory::where('quantity', '<=', \DB::raw('reorder_level'))->count();
+
+    return view('admin.dashboard', compact('totalPatients', 'totalAppointments', 'lowStockItems'));
+}
+}
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8

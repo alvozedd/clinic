@@ -16,6 +16,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+<<<<<<< HEAD
+=======
+        $schedule->command('inventory:check-low-stock')->daily();
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
     }
 
     /**
@@ -29,4 +33,12 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+<<<<<<< HEAD
 }
+=======
+    protected $routeMiddleware = [
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
+    ];
+}
+
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8

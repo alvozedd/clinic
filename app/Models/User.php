@@ -2,7 +2,11 @@
 
 namespace App\Models;
 
+<<<<<<< HEAD
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+=======
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,6 +16,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+<<<<<<< HEAD
     
     // app/Models/User.php
 protected $fillable = [
@@ -28,11 +33,28 @@ protected $fillable = [
 
 // Remove any username references from methods
 
+=======
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name', 'email', 'password', 'role' // Add 'role' here
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
+<<<<<<< HEAD
     protected $casts = [
         'email_verified_at' => 'datetime',
         'is_active' => 'boolean'
@@ -73,3 +95,22 @@ protected $fillable = [
     }
     
 }
+=======
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * Define the many-to-many relationship with Role model.
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+}
+>>>>>>> e66ccc31aa6edaf7f25687c5fddb1dbe3f6d6cb8
