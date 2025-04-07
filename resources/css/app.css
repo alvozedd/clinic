@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add this to verify CSS is loading */
+body {
+  @apply bg-gray-100;
+}
